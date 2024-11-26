@@ -4,7 +4,7 @@ import requests
 from flask import Flask, request
 from main import bot, API_TOKEN, types  # Import the function to process updates
 
-WEBHOOK_URL = "https://wikipedia-webhook-telebot.onrender.com/webhook"  # Replace with your ngrok URL
+WEBHOOK_URL = "https://pinterest-imaga-search-bot.onrender.com/webhook"  # Replace with your ngrok URL
 
 # Set up Flask app
 app = Flask(__name__)
