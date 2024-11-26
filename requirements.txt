@@ -1,0 +1,6 @@
+pytelegrambotapi
+beautifulsoup4
+requests
+opencv-python
+numpy
+urllib
