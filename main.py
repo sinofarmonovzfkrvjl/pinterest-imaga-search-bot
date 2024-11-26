@@ -6,7 +6,7 @@ import shutil
 from keyboards import keyboard_for_admin
 from time import sleep
 
-API_TOKEN = "7596605488:AAFTbpv3_67TleOw8bm5JzSLqZCC0r9F4bY"
+API_TOKEN = "7277018857:AAHs-hBpQ4GPZQ8Kyj5SXVj_dfGeGdURBzo"
 
 bot = TeleBot(API_TOKEN)
 
