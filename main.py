@@ -25,34 +25,28 @@ def send_text(message: types.Message):
 def message_true(message: types.Message):
     global opened_data
     p = Pinterest()
-    data = message.text.split(" ")
+    data = message.text.lower().split(" ")
     opened_data = " ".join(data)
     bot.send_message(message.chat.id, "rasmlar yuklamoqda...")
     try:
-        images_url = p.search(data[0], int(data[-1] if data[-1].isdigit() else 10))
+        images_url = p.search(data[0], int(data[-1] if data[-1].isdigit() else 9))
         p.download(url_list=images_url, number_of_workers=1, output_folder=opened_data)
     except Exception as e:
         print(e)
     images = os.listdir(opened_data)
-    if message.from_user.id == 7077167971:
-        for image in images:
+    for image in images:
+        try:
             with open(f"{opened_data}/{image}", "rb") as photo:
-                bot.send_photo(7077167971, photo.read())
-                sleep(0.5)
-        bot.send_message(7077167971, "bu rasmlar kanalgan tashlansinmi", reply_markup=keyboard_for_admin())
-    else:
-        for image in images:
-            with open(f"{opened_data}/{image}", "rb") as photo:
-                bot.send_photo(message.chat.id, photo.read())
+                bot.send_photo(-1002277840140, photo.read())
+        except:
+            pass
+    shutil.rmtree(opened_data)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call: types.CallbackQuery):
     if call.data == "ha":
         images = os.listdir(opened_data)
-        for image in images:
-            with open(f"{opened_data}/{image}", "rb") as photo:
-                bot.send_photo(-1002181889394, photo.read())
-                sleep(1)
+        
     elif call.data == "yoq":
         bot.send_message(call.message.chat.id, "bekor qilindi")
     shutil.rmtree(opened_data)
